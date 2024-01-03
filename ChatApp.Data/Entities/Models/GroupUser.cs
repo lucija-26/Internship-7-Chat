@@ -9,5 +9,7 @@ namespace ChatApp.Data.Entities.Models
 
         public Group? Group { get; set; }
         public User? User { get; set; }
+
+
     }
 }

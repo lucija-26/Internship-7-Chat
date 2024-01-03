@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Entities\Seeds\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Seeds\" />
   </ItemGroup>
 
 </Project>
