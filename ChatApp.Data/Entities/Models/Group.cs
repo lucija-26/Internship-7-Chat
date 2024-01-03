@@ -1,0 +1,8 @@
+﻿namespace ChatApp.Data.Entities.Models
+{
+    public class Group
+    {
+        public int GroupId { get; set; }
+        public string GroupName { get; set; }
+    }
+}
