@@ -7,5 +7,8 @@
         public int GroupId { get; set; }
         public string? Message { get; set; }
         public DateTime DateTime { get; set; }
+
+        public User? Sender { get; set; }
+        public Group? Group { get; set; }
     }
 }

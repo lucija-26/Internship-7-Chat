@@ -1,8 +1,7 @@
 ﻿using ChatApp.Data.Entities.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Text.RegularExpressions;
 
-namespace ChatApp.Data.Seeds
+namespace ChatApp.Data.Entities.Seeds
 {
     public static class DatabaseSeeder
     {

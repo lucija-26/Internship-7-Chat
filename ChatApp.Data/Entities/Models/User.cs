@@ -11,8 +11,8 @@
         public ICollection<GroupUser> GroupUsers { get; set; } = new List<GroupUser>();
         public ICollection<PrivateMessage> SentPrivateMessages { get; set; } = new List<PrivateMessage>();
         public ICollection<PrivateMessage> ReceivedPrivateMesssages { get; set; } = new List<PrivateMessage>();
-        //public ICollection<Group> Groups { get; set; } = new List<Group>();
-        public ICollection<GroupMessage> GroupMessages { get; set; } = new List<GroupMessage>();
+        public ICollection<Group> Groups { get; set; } = new List<Group>();
+        public ICollection<GroupMessage> GroupMessagesSent { get; set; } = new List<GroupMessage>();
 
     }
 }
