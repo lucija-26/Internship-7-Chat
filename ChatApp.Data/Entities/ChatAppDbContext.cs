@@ -55,7 +55,7 @@ namespace ChatApp.Data.Entities
             base.OnModelCreating(modelBuilder);
         }
     }
-    public class ChatDbContextFactory : IDesignTimeDbContextFactory<ChatAppDbContext>
+    public class ChatAppDbContextFactory : IDesignTimeDbContextFactory<ChatAppDbContext>
     {
         public ChatAppDbContext CreateDbContext(string[] args)
         {
@@ -66,7 +66,7 @@ namespace ChatApp.Data.Entities
 
             config.Providers
                 .First()
-                .TryGet("connectionStrings:add:Chat:connectionString", out var connectionString);
+                .TryGet("connectionStrings:add:ChatApp:connectionString", out var connectionString);
 
             var options = new DbContextOptionsBuilder<ChatAppDbContext>()
                 .UseNpgsql(connectionString)

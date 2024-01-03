@@ -110,4 +110,3 @@ C:\Users\Lucija\source\repos\ChatApp\ChatApp.Data\obj\Debug\net8.0\refint\ChatAp
 C:\Users\Lucija\source\repos\ChatApp\ChatApp.Data\obj\Debug\net8.0\ChatApp.Data.pdb
 C:\Users\Lucija\source\repos\ChatApp\ChatApp.Data\obj\Debug\net8.0\ChatApp.Data.genruntimeconfig.cache
 C:\Users\Lucija\source\repos\ChatApp\ChatApp.Data\obj\Debug\net8.0\ref\ChatApp.Data.dll
-C:\Users\Lucija\source\repos\ChatApp\ChatApp.Data\bin\Debug\net8.0\ChatApp.Data.dll.config
