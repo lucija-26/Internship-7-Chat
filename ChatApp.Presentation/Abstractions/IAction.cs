@@ -5,6 +5,6 @@ namespace ChatApp.Presentation.Abstractions
     {
         int MenuIndex { get; set; }
         string Name { get; set; }
-        void Click();
+        void Open();
     }
 }

@@ -18,7 +18,7 @@ namespace ChatApp.Presentation.Actions
         {
             UserRepository = userRepository;
         }
-        public void Click()
+        public void Open()
         {
             var email = GetUserEmail(UserRepository);
             var password = GetUserPassword();
