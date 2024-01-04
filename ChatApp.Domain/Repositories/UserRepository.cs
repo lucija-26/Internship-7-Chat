@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using ChatApp.Data.Entities;
+﻿using ChatApp.Data.Entities;
 using ChatApp.Data.Entities.Models;
 using ChatApp.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
