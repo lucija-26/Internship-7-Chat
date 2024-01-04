@@ -32,5 +32,10 @@ namespace ChatApp.Presentation.Actions
                 //Menu actions
             }
         }
+
+        public static User? GetCurrentUser()
+        {
+            return user1;
+        }
     }
 }

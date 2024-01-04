@@ -30,5 +30,43 @@ namespace ChatApp.Domain.Repositories
             return SaveChanges();
         }
 
+        public List<User> GetUsersInteractions(int userId)
+        {
+            var senders = DbContext.PrivateMessages
+                .Where(message => message.SenderId == userId)
+                .OrderByDescending(message => message.DateTime)
+                .Select(message => message.Receiver)
+                .ToList();
+
+            var receivers = DbContext.PrivateMessages
+                .Where(message => message.ReceiverId == userId)
+                .OrderByDescending(message => message.DateTime)
+                .Select(message => message.Sender)
+                .ToList();
+
+            var interactions = senders.Concat(receivers).Distinct().ToList();
+
+            return interactions;
+        }
+
+
+        public List<PrivateMessage> GetPrivateMessages(int senderId, int receiverId)
+        {
+            var sender = DbContext.Users.Find(senderId);
+            var receiver = DbContext.Users.Find(receiverId);
+
+            if (sender == null || receiver == null)
+            {
+                return new List<PrivateMessage>();
+            }
+
+            return DbContext.PrivateMessages
+                .Where(message =>
+                    (message.SenderId == senderId && message.ReceiverId == receiverId) ||
+                    (message.SenderId == receiverId && message.ReceiverId == senderId))
+                .OrderBy(message => message.DateTime)
+                .ToList();
+        }
+
     }
 }

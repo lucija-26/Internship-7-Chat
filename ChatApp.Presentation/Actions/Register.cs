@@ -22,7 +22,7 @@ namespace ChatApp.Presentation.Actions
         {
             var email = GetUserEmail(UserRepository);
             var password = GetUserPassword();
-            var username = GetUsername();
+            var username = GetUsername(UserRepository);
             ConfirmPassword(password);
             string capcha = GenerateRandomCaptcha();
             ConfirmCaptcha(capcha);
@@ -37,7 +37,7 @@ namespace ChatApp.Presentation.Actions
         }
 
 
-        static string GetUserEmail(UserRepository userRepository)
+        public string GetUserEmail(UserRepository userRepository)
         {
             string email;
 
@@ -79,7 +79,7 @@ namespace ChatApp.Presentation.Actions
             return username;
         }
 
-        static string GetUserPassword()
+        public string GetUserPassword()
         {
             var password = Console.ReadLine();
             while(!IsValidPassword(password))
@@ -90,7 +90,7 @@ namespace ChatApp.Presentation.Actions
             return password;
         }
 
-        static void ConfirmPassword(string initialPassword)
+        public void ConfirmPassword(string initialPassword)
         {
             string confirmedPassword = "";
             do
@@ -100,7 +100,7 @@ namespace ChatApp.Presentation.Actions
             } while (!ArePasswordsMatching(initialPassword, confirmedPassword));
         }
 
-        static string GenerateRandomCaptcha()
+        public string GenerateRandomCaptcha()
         {
             const string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
             const int captchaLength = 4;
@@ -112,7 +112,7 @@ namespace ChatApp.Presentation.Actions
             return captcha;
         }
 
-        static void ConfirmCaptcha(string expectedCaptcha)
+        public void ConfirmCaptcha(string expectedCaptcha)
         {
             string userCaptcha = "";
             do
@@ -184,6 +184,8 @@ namespace ChatApp.Presentation.Actions
             // Use Regex.IsMatch to check if the username matches the pattern
             return Regex.IsMatch(username, pattern);
         }
+
+        
     }
 }
 

@@ -30,21 +30,47 @@ namespace ChatApp.Domain.Repositories
 
             return SaveChanges();
         }
-
-        public ResponseResultType Update(User user)
+        public ResponseResultType UpdateEmail(int userId, string newEmail)
         {
-            var userToUpdate = DbContext.Users.Find(user.UserId);
+            var userToUpdate = DbContext.Users.Find(userId);
             if (userToUpdate is null)
             {
                 return ResponseResultType.NotFound;
             }
 
-            DbContext.Update(user);
+            userToUpdate.Email = newEmail;
+
+            return SaveChanges();
+        }
+        public ResponseResultType UpdateRole(int userId, bool isAdmin)
+        {
+            var userToUpdate = DbContext.Users.Find(userId);
+            if (userToUpdate is null)
+            {
+                return ResponseResultType.NotFound;
+            }
+
+            userToUpdate.IsAdmin = isAdmin;
+
+            return SaveChanges();
+        }
+        public ResponseResultType Update(User user, int id)
+        {
+            var userToUpdate = DbContext.Users.Find(id);
+            if (userToUpdate is null)
+            {
+                return ResponseResultType.NotFound;
+            }
+
+            userToUpdate.Email = user.Email;
+            userToUpdate.Password = user.Password;
 
             return SaveChanges();
         }
         public ICollection<User> GetAllUsers() => DbContext.Users.ToList();
         public User? GetByEmail(string email) => DbContext.Users.FirstOrDefault(u => u.Email == email);
         public User? GetById(int id) => DbContext.Users.FirstOrDefault(u => u.UserId == id);
+
+        public User? GetByUsername(string username) => DbContext.Users.FirstOrDefault(u => u.UserName == username);
     }
 }
