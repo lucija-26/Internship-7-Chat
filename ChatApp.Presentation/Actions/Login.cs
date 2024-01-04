@@ -3,6 +3,8 @@
 using ChatApp.Data.Entities.Models;
 using ChatApp.Domain.Repositories;
 using ChatApp.Presentation.Abstractions;
+using ChatApp.Presentation.Extensions;
+using ChatApp.Presentation.Factories;
 
 namespace ChatApp.Presentation.Actions
 {
@@ -29,13 +31,24 @@ namespace ChatApp.Presentation.Actions
             {
                 Console.WriteLine("Successfully logged in.");
                 user1 = user;
-                //Menu actions
+                var menuActions = AfterLoginMenuFactory.CreateActions();
+                menuActions.PrintActionsAndOpen();
+
             }
         }
 
         public static User? GetCurrentUser()
         {
             return user1;
+        }
+
+        public static void Logout()
+        {
+
+            user1 = null;
+            Console.WriteLine("Logout uspjesan");
+            var mainMenuActions = MainMenuFactory.CreateActions();
+            mainMenuActions.PrintActionsAndOpen();
         }
     }
 }

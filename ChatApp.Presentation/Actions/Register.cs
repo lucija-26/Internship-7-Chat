@@ -9,9 +9,9 @@ namespace ChatApp.Presentation.Actions
 {
     public class Register : IAction
     {
-        int MenuIndex { get; set; }
+        public int MenuIndex { get; set; }
         public string Name { get; set; } = "Register";
-        int IAction.MenuIndex { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        
 
         private readonly UserRepository UserRepository;
         public Register(UserRepository userRepository)
@@ -37,7 +37,7 @@ namespace ChatApp.Presentation.Actions
         }
 
 
-        public string GetUserEmail(UserRepository userRepository)
+        static string GetUserEmail(UserRepository userRepository)
         {
             string email;
 
