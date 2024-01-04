@@ -1,5 +1,7 @@
 ﻿
 
+using ChatApp.Presentation.Extensions;
+
 namespace ChatApp.Presentation.Abstractions
 {
     public class BaseMenuAction : IMenuAction
