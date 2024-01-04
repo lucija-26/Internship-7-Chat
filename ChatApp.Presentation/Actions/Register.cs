@@ -10,7 +10,7 @@ namespace ChatApp.Presentation.Actions
     public class Register : IAction
     {
         int MenuIndex { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = "Register";
         int IAction.MenuIndex { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private readonly UserRepository UserRepository;
@@ -22,13 +22,15 @@ namespace ChatApp.Presentation.Actions
         {
             var email = GetUserEmail(UserRepository);
             var password = GetUserPassword();
+            var username = GetUsername();
             ConfirmPassword(password);
             string capcha = GenerateRandomCaptcha();
             ConfirmCaptcha(capcha);
             if (UserRepository.Add(new User()
             {
                 Email = email,
-                Password = password
+                Password = password,
+                UserName = username
             }
             ) == ResponseResultType.Success)
             Console.WriteLine("Successfully registered!");
@@ -57,6 +59,24 @@ namespace ChatApp.Presentation.Actions
             } while (!IsValidEmail(email) || userRepository.GetByEmail(email) != null);
 
             return email;
+        }
+
+        static string GetUsername(UserRepository userRepository)
+        {
+            string username;
+            do
+            {
+                username = Console.ReadLine();
+                if (!IsValidUsername(username))
+                {
+                    Console.WriteLine("Invalid username format. Please enter a valid username. ");
+                }
+                if (userRepository.GetByUsername(username) != null)
+                {
+                    Console.WriteLine("This username is already in use. Please choose a different one. ");
+                }
+            } while(!IsValidUsername(username) || userRepository.GetByUsername(username) != null);
+            return username;
         }
 
         static string GetUserPassword()
@@ -154,6 +174,15 @@ namespace ChatApp.Presentation.Actions
         static bool IsValidCaptcha(string userEnteredCaptcha, string expectedCaptcha)
         {
             return userEnteredCaptcha == expectedCaptcha;
+        }
+
+        static bool IsValidUsername(string username)
+        {
+            // Define the regex pattern for a valid username
+            string pattern = "^[a-zA-Z0-9_]{4,20}$";
+
+            // Use Regex.IsMatch to check if the username matches the pattern
+            return Regex.IsMatch(username, pattern);
         }
     }
 }
